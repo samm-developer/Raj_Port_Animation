@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import MagneticButton from '../components/MagneticButton';
 import { personalInfo } from '../data/portfolioData';
 import './ContactPage.css';
 
@@ -135,10 +134,6 @@ export default function ContactPage() {
               </motion.a>
             ))}
           </div>
-
-          <MagneticButton href={`mailto:${personalInfo.email}`} variant="primary">
-            Send Message
-          </MagneticButton>
         </motion.div>
       </div>
     </div>
