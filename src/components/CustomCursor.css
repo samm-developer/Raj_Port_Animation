@@ -1,0 +1,280 @@
+.cursor-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+/* ── Shared contact-style dot + ring ── */
+.cursor-dot {
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, background 0.3s;
+}
+
+.cursor-dot.hovering {
+  width: 12px;
+  height: 12px;
+  top: -6px;
+  left: -6px;
+  background: var(--accent-pink);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(0, 240, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              left 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s;
+}
+
+.cursor-ring.hovering {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: -30px;
+  border-color: var(--accent-pink);
+}
+
+/* ── HOME: particle trail ── */
+.cursor-home-dot {
+  position: fixed;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  box-shadow: 0 0 12px var(--accent-cyan);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cursor-home-dot.hovering {
+  background: var(--accent-pink);
+  box-shadow: 0 0 20px var(--accent-pink);
+}
+
+.cursor-home-ring {
+  position: fixed;
+  top: -16px;
+  left: -16px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── ABOUT: morphing blob ── */
+.cursor-about-blob {
+  position: fixed;
+  top: -28px;
+  left: -28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(131, 56, 236, 0.5), rgba(255, 0, 110, 0.2));
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 9999;
+  transition: background 0.4s;
+}
+
+.cursor-about-blob.hovering {
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.5), rgba(131, 56, 236, 0.3));
+}
+
+.cursor-about-dot {
+  position: fixed;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+}
+
+/* ── WORK: crosshair + brackets ── */
+.cursor-work {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.work-cross-h,
+.work-cross-v {
+  position: absolute;
+  background: rgba(255, 0, 110, 0.5);
+  transition: all 0.3s;
+}
+
+.work-cross-h {
+  width: 40px;
+  height: 1px;
+  top: 0;
+  left: -20px;
+}
+
+.work-cross-v {
+  width: 1px;
+  height: 40px;
+  top: -20px;
+  left: 0;
+}
+
+.work-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-pink);
+  border-radius: 50%;
+  top: -2px;
+  left: -2px;
+  box-shadow: 0 0 8px var(--accent-pink);
+}
+
+.work-bracket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--accent-cyan);
+  border-style: solid;
+  border-width: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.6;
+}
+
+.work-bracket.tl { top: -18px; left: -18px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.work-bracket.tr { top: -18px; left: 8px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.work-bracket.bl { top: 8px; left: -18px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.work-bracket.br { top: 8px; left: 8px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+.cursor-work.hovering .work-bracket {
+  opacity: 1;
+}
+
+.cursor-work.hovering .work-bracket.tl { top: -28px; left: -28px; }
+.cursor-work.hovering .work-bracket.tr { top: -28px; left: 18px; }
+.cursor-work.hovering .work-bracket.bl { top: 18px; left: -28px; }
+.cursor-work.hovering .work-bracket.br { top: 18px; left: 18px; }
+
+.cursor-work.hovering .work-cross-h { width: 60px; left: -30px; }
+.cursor-work.hovering .work-cross-v { height: 60px; top: -30px; }
+
+/* ── SKILLS: orbiting satellites ── */
+.cursor-skills {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.skills-orbit-ring {
+  position: absolute;
+  top: -22px;
+  left: -22px;
+  width: 44px;
+  height: 44px;
+  border: 1px dashed rgba(0, 240, 255, 0.4);
+  border-radius: 50%;
+  animation: skills-ring-spin 4s linear infinite;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
+}
+
+.cursor-skills.hovering .skills-orbit-ring {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: -30px;
+  border-color: var(--accent-purple);
+}
+
+.skills-center-dot {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.skills-satellite {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  top: -2.5px;
+  left: -2.5px;
+  animation: skills-orbit 2.5s linear infinite;
+}
+
+.skills-satellite.s1 {
+  background: var(--accent-cyan);
+  animation-duration: 2s;
+  --orbit-r: 18px;
+}
+
+.skills-satellite.s2 {
+  background: var(--accent-purple);
+  animation-duration: 2.8s;
+  animation-delay: -0.8s;
+  --orbit-r: 22px;
+}
+
+.skills-satellite.s3 {
+  background: var(--accent-pink);
+  animation-duration: 3.5s;
+  animation-delay: -1.6s;
+  --orbit-r: 16px;
+}
+
+.cursor-skills.hovering .skills-satellite.s1 { --orbit-r: 26px; }
+.cursor-skills.hovering .skills-satellite.s2 { --orbit-r: 30px; }
+.cursor-skills.hovering .skills-satellite.s3 { --orbit-r: 22px; }
+
+@keyframes skills-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes skills-orbit {
+  from { transform: rotate(0deg) translateX(var(--orbit-r)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--orbit-r)) rotate(-360deg); }
+}
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+}

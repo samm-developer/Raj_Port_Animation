@@ -1,0 +1,39 @@
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+}
+
+.mesh-blob.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: #8338ec;
+  top: -20%;
+  left: -10%;
+}
+
+.mesh-blob.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #ff006e;
+  bottom: -15%;
+  right: -10%;
+}
+
+.mesh-blob.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: #00f0ff;
+  top: 40%;
+  left: 50%;
+  opacity: 0.2;
+}
