@@ -5,7 +5,19 @@ import { personalInfo } from '../data/portfolioData';
 import MagneticButton from './MagneticButton';
 import './Hero.css';
 
-const nameChars = personalInfo.name.split('');
+const nameParts = personalInfo.name.split(' ');
+
+function NameLine({ text, lineIndex }) {
+  return (
+    <span className="hero-name-line" data-line={lineIndex}>
+      {text.split('').map((char, i) => (
+        <span key={i} className="hero-char-wrapper">
+          <span className="hero-char">{char}</span>
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export default function Hero() {
   const heroRef = useRef(null);
@@ -64,10 +76,8 @@ export default function Hero() {
         </motion.div>
 
         <h1 className="hero-title">
-          {nameChars.map((char, i) => (
-            <span key={i} className="hero-char-wrapper">
-              <span className="hero-char">{char === ' ' ? '\u00A0' : char}</span>
-            </span>
+          {nameParts.map((part, i) => (
+            <NameLine key={part} text={part} lineIndex={i} />
           ))}
         </h1>
 

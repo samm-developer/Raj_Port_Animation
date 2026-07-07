@@ -92,6 +92,15 @@
   perspective: 1000px;
 }
 
+.hero-name-line {
+  display: inline;
+  white-space: nowrap;
+}
+
+.hero-name-line + .hero-name-line::before {
+  content: '\00a0';
+}
+
 .hero-char-wrapper {
   display: inline-block;
   overflow: hidden;
@@ -188,6 +197,19 @@
 @media (max-width: 768px) {
   .hero {
     padding: 7rem 1.5rem 3rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+    line-height: 1;
+  }
+
+  .hero-name-line {
+    display: block;
+  }
+
+  .hero-name-line + .hero-name-line::before {
+    content: none;
   }
 
   .hero-stats {
